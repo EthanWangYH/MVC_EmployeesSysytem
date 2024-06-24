@@ -1,0 +1,53 @@
+﻿@model EmployeesSysytem.Models.ViewModels.RoleViewModel;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="card">
+    <div class="card-title">
+        <div class="mt-2 mx-2">
+            <p class="fs-5">New Role Details</p>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label asp-for="RoleName" class="control-label"></label>
+                                <input asp-for="RoleName" class="form-control" />
+                                <span asp-validation-for="RoleName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="form-group mx-2">
+                                <input type="submit" value="Register Role" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group mx-2">
+                                <a asp-action="Index" class="btn btn-warning">Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

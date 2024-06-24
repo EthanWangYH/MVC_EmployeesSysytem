@@ -1,0 +1,84 @@
+﻿@model EmployeesSysytem.Models.Holiday
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card">
+    <div class="card-header">
+
+        <h3 class="card-title">Holidays Details</h3>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+            <!-- /.card-header -->
+            <div class="card-body col-md-6">
+                <table id="example1" class="table table-bordered table-hover">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <td >
+                            @Html.DisplayFor(model => model.Title)
+                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <td >
+                            @Html.DisplayFor(model => model.Description)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StartTime)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.StartTime)
+                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EndTime)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.EndTime)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedById)
+                        </th>
+                        <td >
+                            @Html.DisplayFor(model => model.CreatedById)
+                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedOn)
+                        </th>
+                        <td >
+                            @Html.DisplayFor(model => model.CreatedOn)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ModifiedById)
+                        </th>
+                        <td >
+                            @Html.DisplayFor(model => model.ModifiedById)
+                        </td>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.ModifiedOn)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.ModifiedOn)
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="my-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary mx-2 ">Edit</a>
+            <a asp-action="Index" class="btn btn-warning">Back to List</a>
+        </div>
+    </div>
+</div>

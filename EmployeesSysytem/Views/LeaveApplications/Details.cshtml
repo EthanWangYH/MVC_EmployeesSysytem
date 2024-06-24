@@ -1,0 +1,159 @@
+﻿@model EmployeesSysytem.Models.LeaveApplication
+
+@{
+    ViewData["Title"] = "Details";
+    bool isManager = ViewBag.isManager;
+    bool isBoss = ViewBag.isBoss;
+    bool isAdmin = ViewBag.isAdmin;
+    bool isHR = ViewBag.isHR;
+    bool isApplicationer = ViewBag.isApplicationer;
+    decimal leavDays = ViewBag.leavedays;
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>LeaveApplication</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee!.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NoOfDays)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NoOfDays)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Duration!.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LeaveType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LeaveType!.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Attachment)
+        </dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.Attachment))
+            {
+                <a asp-action="DownloadFile" asp-controller="LeaveApplications"
+                   asp-route-id="@Model.Id"><i class="fa-solid fa-cloud-arrow-down mx-1"></i>Download Attachment</a>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Attachment)
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LeaveStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LeaveStatus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ApprovalById)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ApprovalById)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ApprovalOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ApprovalOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedById)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatedById)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ModifiedById)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ModifiedById)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ModifiedOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ModifiedOn)
+        </dd>
+    </dl>
+</div>
+<div class="row mt-3">
+    @if ((isAdmin || isManager || isBoss) && !isApplicationer)
+    {
+        @if (leavDays <= 5 || !isManager)
+        {
+            @if (Model.LeaveStatus != LeaveStatus.Apprvoed)
+            {
+                <form style="display:inline" method="post" asp-controller="LeaveApplications" asp-action="UpdateStatus" class="mx-3">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <input type="hidden" name="status" value="Apprvoed" />
+                    <button type="submit" class="btn btn-primary">Approved</button>
+                </form>
+            }    
+        }
+        @if (Model.LeaveStatus != LeaveStatus.Pending)
+        {
+            <form style="display:inline" method="post" asp-controller="LeaveApplications" asp-action="UpdateStatus" class="mx-3">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <input type="hidden" name="status" value="Pending" />
+                <button type="submit" class="btn btn-warning">Pending</button>
+            </form>
+        }
+        @if (Model.LeaveStatus != LeaveStatus.Rejected)
+        {
+            <form style="display:inline" method="post" asp-controller="LeaveApplications" asp-action="UpdateStatus" class="mx-3">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <input type="hidden" name="status" value="Rejected" />
+                <button type="submit" class="btn btn-danger">Rejected</button>
+            </form>
+        }
+    }
+    <div>
+        @if (isApplicationer && !isBoss)
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="mx-4 btn btn-success">Edit</a>
+        }
+
+        <a asp-action="Index" class="mx-2 btn btn-info">Back to List</a>
+    </div>
+</div>
+

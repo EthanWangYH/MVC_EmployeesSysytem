@@ -1,0 +1,71 @@
+﻿@model IEnumerable<EmployeesSysytem.Models.Audit>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+    <div class="card-header">
+
+        <h3 class="card-title">Audits List</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AuditType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TableName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AffectedColumns)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PrimaryKey)
+                    </th>
+                    <th>
+                        View
+                    </th> 
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AuditType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TableName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AffectedColumns)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrimaryKey)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning mx-lg-1"><i class="fa-solid fa-book"></i>Details</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

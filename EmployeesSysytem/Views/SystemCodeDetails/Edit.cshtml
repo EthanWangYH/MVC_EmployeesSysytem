@@ -1,0 +1,72 @@
+﻿@model EmployeesSysytem.Models.SystemCodeDetail
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="card">
+    <div class="card-header"><h3>Edit SystemCode Detail</h3></div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="SystemCodeId" class="control-label"></label>
+                        <select asp-for="SystemCodeId" class="form-control" asp-items="ViewBag.SystemCodeId"></select>
+                        <span asp-validation-for="SystemCodeId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Code" class="control-label"></label>
+                        <input asp-for="Code" class="form-control" />
+                        <span asp-validation-for="Code" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderNo" class="control-label"></label>
+                        <input asp-for="OrderNo" class="form-control" />
+                        <span asp-validation-for="OrderNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CreatedById" class="control-label"></label>
+                        <input asp-for="CreatedById" class="form-control" />
+                        <span asp-validation-for="CreatedById" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CreatedOn" class="control-label"></label>
+                        <input asp-for="CreatedOn" class="form-control" />
+                        <span asp-validation-for="CreatedOn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ModifiedById" class="control-label"></label>
+                        <input asp-for="ModifiedById" class="form-control" />
+                        <span asp-validation-for="ModifiedById" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ModifiedOn" class="control-label"></label>
+                        <input asp-for="ModifiedOn" class="form-control" />
+                        <span asp-validation-for="ModifiedOn" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="form-group mx-2">
+                            <input type="submit" value="Edit SystemCode Detail" class="btn btn-primary" />
+                        </div>
+                        <div class="form-group mx-2">
+                            <a asp-action="Index" class="btn btn-warning">Back to List</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

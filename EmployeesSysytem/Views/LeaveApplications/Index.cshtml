@@ -1,0 +1,108 @@
+﻿@model IEnumerable<EmployeesSysytem.Models.LeaveApplication>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add New Leave</a>
+</p>
+
+
+<div class="card">
+    <div class="card-header">
+
+        <h3 class="card-title">Leave List</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Employee)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NoOfDays)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Duration)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.LeaveType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Attachment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Employee!.AllocatedLeaveDays)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Employee!.LeaveOutStandingBalance)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.LeaveStatus)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee!.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NoOfDays)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Duration!.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveType!.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Attachment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee!.AllocatedLeaveDays)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee!.LeaveOutStandingBalance)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveStatus)
+                        </td>
+                        <td>
+                            <div class="dropdown d-flex justify-content-center">
+
+                                <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Actions</a>
+                                <ul class="dropdown-menu dropdown-menu-dark text-center" style="">
+                                    <li class="mt-2 mb-2"><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary mx-lg-1"><i class="fa-solid fa-marker"></i>Edit</a></li>
+                                    <li class="mt-2 mb-2"><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning mx-lg-1"><i class="fa-solid fa-book"></i>Details</a></li>
+                                    <li class="mt-2 mb-2"><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger  mx-lg-1"><i class="fa-solid fa-trash-can"></i>Delete</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

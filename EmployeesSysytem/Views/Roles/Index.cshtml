@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>;
+
+@{
+    ViewData["Title"] = "System Roles";
+}
+<p>
+    <a asp-action="Create" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add New Role</a>
+</p>
+
+
+<div class="card">
+    <div class="card-header">
+
+        <h3 class="card-title">Roles List</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Role NO.
+                    </th>
+                    <th>
+                        Role Email
+                    </th>
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+
+                        <td>
+                            <div class="dropdown d-flex justify-content-center">
+
+                                <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Actions</a>
+                                <ul class="dropdown-menu dropdown-menu-dark text-center" style="">
+                                    <li class="mt-2 mb-2"><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary mx-lg-1"><i class="fa-solid fa-marker"></i>Edit</a></li>
+                                    <li class="mt-2 mb-2"><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning mx-lg-1"><i class="fa-solid fa-book"></i>Details</a></li>
+                                    <li class="mt-2 mb-2">
+                                        <a asp-controller="RoleProfiles" asp-action="UserRights" asp-route-id="@item.Id" class="btn btn-secondary "><i class="fa-solid fa-user-lock mr-2"></i>Assign Rights</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
